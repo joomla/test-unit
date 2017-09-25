@@ -9,7 +9,7 @@
         "optimize-autoloader": true,
         "platform": {
             "php": "5.3.10"
-        },
+        }
     },
     "support": {
         "issues": "https://issues.joomla.org",
