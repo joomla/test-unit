@@ -25,6 +25,12 @@
     },
     "scripts": {
         "post-package-update": [
+            "@copy-xml"
+        ],
+        "post-package-install": [
+            "@copy-xml"
+        ],
+        "copy-xml": [
             "php -r \"copy(__DIR__ . '/src/phpunit.xml.dist', getcwd() . '/phpunit.xml.dist');\""
         ]
     }
