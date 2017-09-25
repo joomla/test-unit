@@ -1,6 +1,8 @@
 # test-unit
 Unit Tests for Joomla
 
+This repository collects and provides the automated tests, that can be **run on the source code directly without needing an installed Joomla CMS**. In short, these tests run with PHPUnit and do not rely on services like the database being available.
+
 ## Folder Structure
 
 * `core` - Registered to Joomla's autoloader by the unit testing bootstrap file, contains all classes named `Test*` and primarily contains TestCase classes extending the PHPUnit Framework and classes to generate mock objects for several classes.
