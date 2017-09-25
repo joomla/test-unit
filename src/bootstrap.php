@@ -52,21 +52,22 @@ if (!defined('JPATH_TEST_STUBS'))
 {
 	define('JPATH_TEST_STUBS', JPATH_TESTS . '/stubs');
 }
+
+$rootDirectory = getcwd();
+
+if (!defined('JPATH_BASE')) {
+    define('JPATH_BASE', $rootDirectory);
+}
+if (!defined('JPATH_ROOT')) {
+    define('JPATH_ROOT', JPATH_BASE);
+}
 if (!defined('JPATH_PLATFORM'))
 {
-	define('JPATH_PLATFORM', realpath(dirname(dirname(__DIR__)) . '/libraries'));
+	define('JPATH_PLATFORM', JPATH_BASE . '/libraries');
 }
 if (!defined('JPATH_LIBRARIES'))
 {
-	define('JPATH_LIBRARIES', realpath(dirname(dirname(__DIR__)) . '/libraries'));
-}
-if (!defined('JPATH_BASE'))
-{
-	define('JPATH_BASE', realpath(dirname(dirname(__DIR__))));
-}
-if (!defined('JPATH_ROOT'))
-{
-	define('JPATH_ROOT', realpath(JPATH_BASE));
+	define('JPATH_LIBRARIES', JPATH_BASE . '/libraries');
 }
 if (!defined('JPATH_CACHE'))
 {
