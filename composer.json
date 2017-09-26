@@ -22,16 +22,5 @@
         "friendsofphp/php-cs-fixer": "~1.11",
         "squizlabs/php_codesniffer": "~1.5",
         "pear/cache_lite": "1.7.16"
-    },
-    "scripts": {
-        "post-package-update": [
-            "@copy-xml"
-        ],
-        "post-package-install": [
-            "@copy-xml"
-        ],
-        "copy-xml": [
-            "php -r \"copy(__DIR__ . '/src/phpunit.xml.dist', getcwd() . '/phpunit.xml.dist');\""
-        ]
     }
 }
