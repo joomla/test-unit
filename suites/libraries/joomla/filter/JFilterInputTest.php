@@ -1564,28 +1564,28 @@ class JFilterInputTest extends \PHPUnit\Framework\TestCase
 				'From specific cases'
 			),
 			'tracker15673' => array(
-                'raw',
-                '<ul>
+				'raw',
+				'<ul>
 <li><a href="../">презентация</a>)</li>
 <li>Елфимова О.Т. Разработка системы отделения космического аппарата Метеор-М в системе MSC.Adams<a style="color: maroon;" href="../../pub/diplom_labors/2016/2016_Elfimova_O_rpz.pdf">диплом</a></li>
 </ul>',
-                '<ul>
+				'<ul>
 <li><a href="../">презентация</a>)</li>
 <li>Елфимова О.Т. Разработка системы отделения космического аппарата Метеор-М в системе MSC.Adams<a style="color: maroon;" href="../../pub/diplom_labors/2016/2016_Elfimova_O_rpz.pdf">диплом</a></li>
 </ul>',
-                'From generic cases'
+				'From generic cases'
 			),
 			'tracker15673a' => array(
-                'string',
-                '<ul>
+				'string',
+				'<ul>
 <li><a href="../">презентация</a>)</li>
 <li>Елфимова О.Т. Разработка системы отделения космического аппарата Метеор-М в системе MSC.Adams<a style="color: maroon;" href="../../pub/diplom_labors/2016/2016_Elfimova_O_rpz.pdf">диплом</a></li>
 </ul>',
-                '<ul>
+				'<ul>
 <li><a href="../">презентация</a>)</li>
 <li>Елфимова О.Т. Разработка системы отделения космического аппарата Метеор-М в системе MSC.Adams<a style="color: maroon;" href="../../pub/diplom_labors/2016/2016_Elfimova_O_rpz.pdf">диплом</a></li>
 </ul>',
-                'From generic cases'
+				'From generic cases'
 			),
 			'tracker15673b' => array(
 				'string',
