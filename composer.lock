@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "28753f1dbbf0de221a87ea9c072b962e",
+    "content-hash": "14bba6e7e5bf6dafd16bee4fbe616a6a",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -162,56 +162,6 @@
                 "object graph"
             ],
             "time": "2017-10-19T19:58:43+00:00"
-        },
-        {
-            "name": "pear/cache_lite",
-            "version": "v1.7.16",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pear/Cache_Lite.git",
-                "reference": "9fa08bd625f86946d41a6e7ff66f6f4ea5c0f0bb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pear/Cache_Lite/zipball/9fa08bd625f86946d41a6e7ff66f6f4ea5c0f0bb",
-                "reference": "9fa08bd625f86946d41a6e7ff66f6f4ea5c0f0bb",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=4.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "Cache/Lite.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                "./"
-            ],
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "Markus Tacker",
-                    "homepage": "http://pear.php.net/user/tacker"
-                },
-                {
-                    "name": "Fabien Marty",
-                    "homepage": "http://pear.php.net/user/fab"
-                }
-            ],
-            "description": "Fast and safe little cache system",
-            "homepage": "https://github.com/pear/Cache_Lite",
-            "keywords": [
-                "cache"
-            ],
-            "time": "2014-05-11T15:02:19+00:00"
         },
         {
             "name": "phar-io/manifest",
