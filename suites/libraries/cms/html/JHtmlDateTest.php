@@ -7,6 +7,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Joomla\CMS\Date\Date;
+
 /**
  * Test class for JHtmlDate.
  *
@@ -25,39 +27,39 @@ class JHtmlDateTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function dataTestRelative()
 	{
-		$now1 = new JDate('now');
+		$now1 = new Date('now');
 		usleep(1);
-		$now2 = new JDate('now');
+		$now2 = new Date('now');
 
 		return array(
 			// Element order: result, date, unit, time
 			// result - 1 hour ago
 			array(
 				'JLIB_HTML_DATE_RELATIVE_HOURS',
-				new JDate('2011-10-18 11:00:00'),
+				new Date('2011-10-18 11:00:00'),
 				null,
-				new JDate('2011-10-18 12:00:00')
+				new Date('2011-10-18 12:00:00')
 			),
 			// Result - 10 days ago
 			array(
 				'JLIB_HTML_DATE_RELATIVE_DAYS',
-				new JDate('2011-10-08 12:00:00'),
+				new Date('2011-10-08 12:00:00'),
 				'day',
-				new JDate('2011-10-18 12:00:00')
+				new Date('2011-10-18 12:00:00')
 			),
 			// Result - 3 weeks ago
 			array(
 				'JLIB_HTML_DATE_RELATIVE_WEEKS',
-				new JDate('2011-09-27 12:00:00'),
+				new Date('2011-09-27 12:00:00'),
 				'week',
-				new JDate('2011-10-18 12:00:00')
+				new Date('2011-10-18 12:00:00')
 			),
 			// Result - 10 minutes ago
 			array(
 				'JLIB_HTML_DATE_RELATIVE_MINUTES',
-				new JDate('2011-10-18 11:50:00'),
+				new Date('2011-10-18 11:50:00'),
 				'minute',
-				new JDate('2011-10-18 12:00:00')
+				new Date('2011-10-18 12:00:00')
 			),
 			// Result - Less than a minute ago
 			array(

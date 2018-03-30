@@ -14,7 +14,7 @@
  * @subpackage  Toolbar
  * @since       3.0
  */
-class JToolbarTest extends TestCase
+class JToolbarTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * @var    JToolbar
@@ -35,10 +35,6 @@ class JToolbarTest extends TestCase
 		$this->object = new JToolbar('toolbar');
 
 		parent::setUp();
-
-		$this->saveFactoryState();
-
-		JFactory::$application = $this->getMockCmsApp();
 	}
 
 	/**
@@ -51,9 +47,6 @@ class JToolbarTest extends TestCase
 	 */
 	protected function tearDown()
 	{
-		$this->restoreFactoryState();
-		unset($this->object);
-
 		parent::tearDown();
 	}
 
@@ -150,23 +143,12 @@ class JToolbarTest extends TestCase
 	}
 
 	/**
-	 * Tests the render method
+	 * Tests Load a button
 	 *
 	 * @return  void
 	 *
 	 * @since   3.0
 	 */
-	public function testRender()
-	{
-		$toolbar = JToolbar::getInstance('toolbar');
-		$toolbar->appendButton('Separator', 'spacer', 25);
-
-		$this->assertThat(
-			$toolbar->render(),
-			$this->isType('string')
-		);
-	}
-
 	public function testLoadButtonType()
 	{
 		$this->assertThat(

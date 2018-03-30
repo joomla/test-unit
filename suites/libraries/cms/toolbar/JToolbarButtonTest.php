@@ -14,7 +14,7 @@
  * @subpackage  Toolbar
  * @since       3.0
  */
-class JToolbarButtonTest extends TestCaseDatabase
+class JToolbarButtonTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * @var    JToolbar
@@ -52,15 +52,6 @@ class JToolbarButtonTest extends TestCaseDatabase
 
 		$this->toolbar = JToolbar::getInstance();
 		$this->object  = $this->toolbar->loadButtonType('standard');
-
-		$this->saveFactoryState();
-
-		JFactory::$application = $this->getMockCmsApp();
-
-		$this->backupServer = $_SERVER;
-
-		$_SERVER['HTTP_HOST'] = 'example.com';
-		$_SERVER['SCRIPT_NAME'] = '';
 	}
 
 	/**
@@ -73,10 +64,6 @@ class JToolbarButtonTest extends TestCaseDatabase
 	 */
 	protected function tearDown()
 	{
-		$_SERVER = $this->backupServer;
-		unset($this->backupServer, $this->toolbar, $this->object);
-		$this->restoreFactoryState();
-
 		parent::tearDown();
 	}
 
@@ -110,41 +97,4 @@ class JToolbarButtonTest extends TestCaseDatabase
 		);
 	}
 
-	/**
-	 * Tests the render method
-	 *
-	 * @return  void
-	 *
-	 * @since   3.2
-	 */
-	public function testRender()
-	{
-		$type = array('Standard', 'test');
-
-		$expected = "<div class=\"btn-wrapper\"  id=\"toolbar-test\">\n"
-			. "\t<button onclick=\"if (document.adminForm.boxchecked.value == 0) { alert(Joomla.JText._('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST')); } else { Joomla.submitbutton(''); }\" class=\"btn btn-small button-test\">\n"
-			. "\t<span class=\"icon-test\" aria-hidden=\"true\"></span>\n"
-			. "\t</button>\n"
-			. "</div>\n";
-
-		$this->assertEquals(
-			$expected,
-			$this->object->render($type)
-		);
-	}
-
-	/**
-	 * Tests the fetchIconClass method
-	 *
-	 * @return  void
-	 *
-	 * @since   3.0
-	 */
-	public function testFetchIconClass()
-	{
-		$this->assertThat(
-			$this->object->fetchIconClass('standard'),
-			$this->equalTo('icon-standard')
-		);
-	}
 }

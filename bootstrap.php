@@ -106,20 +106,39 @@ if (!defined('JDEBUG'))
 	define('JDEBUG', false);
 }
 
-// Import the platform in legacy mode.
-require_once JPATH_PLATFORM . '/import.legacy.php';
+// Import the library loader if necessary.
+if (!class_exists('JLoader'))
+{
+	require_once JPATH_PLATFORM . '/loader.php';
 
-// Bootstrap the CMS libraries.
-require_once JPATH_LIBRARIES . '/cms.php';
+	// If JLoader still does not exist panic.
+	if (!class_exists('JLoader'))
+	{
+		throw new RuntimeException('Joomla Platform not loaded.');
+	}
+}
 
-// Register the core Joomla test classes.
-JLoader::registerPrefix('Test', __DIR__ . '/core');
+// Setup the autoloaders.
+JLoader::setup();
 
-// Register the deprecation handler
-TestHelper::registerDeprecationHandler();
+// Register the library base path for CMS libraries.
+JLoader::registerPrefix('J', JPATH_PLATFORM . '/cms', false, true);
 
-// Register the deprecation logger
-TestHelper::registerDeprecationLogger();
+// Register the extension root paths.
+JLoader::registerExtensionRootFolder('', JPATH_SITE);
+JLoader::registerExtensionRootFolder('Site', JPATH_SITE);
+JLoader::registerExtensionRootFolder('Administrator', JPATH_ADMINISTRATOR);
 
-// Register the logger if enabled
-TestHelper::registerLogger();
+// Create the Composer autoloader
+/** @var \Composer\Autoload\ClassLoader $loader */
+$loader = require JPATH_LIBRARIES . '/vendor/autoload.php';
+$loader->unregister();
+
+// Decorate Composer autoloader
+spl_autoload_register([new JClassLoader($loader), 'loadClass'], true, true);
+
+// Register the class aliases for Framework classes that have replaced their Platform equivilents
+require_once JPATH_LIBRARIES . '/classmap.php';
+
+// Define the Joomla version if not already defined.
+defined('JVERSION') or define('JVERSION', (new JVersion)->getShortVersion());

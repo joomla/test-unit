@@ -14,7 +14,7 @@
  * @subpackage  Html
  * @since       3.1
  */
-class JHtmlTelTest extends TestCase
+class JHtmlTelTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * Tests the JHtmlTel::tel method.

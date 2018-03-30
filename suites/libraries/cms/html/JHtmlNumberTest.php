@@ -14,7 +14,7 @@
  * @subpackage  Html
  * @since       3.1
  */
-class JHtmlNumberTest extends TestCase
+class JHtmlNumberTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * Test...

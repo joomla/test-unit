@@ -14,7 +14,7 @@
  * @subpackage  Pagination
  * @since       3.2
  */
-class JPaginationObjectTest extends TestCase
+class JPaginationObjectTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * Provides the data to test the constructor method.
