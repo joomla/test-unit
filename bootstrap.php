@@ -2,26 +2,12 @@
 /**
  * Prepares a minimalist framework for unit testing.
  *
- * Joomla is assumed to include the /unittest/ directory.
- * eg, /path/to/joomla/unittest/
- *
  * @package    Joomla.UnitTest
  *
  * @copyright  Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  * @link       http://www.phpunit.de/manual/current/en/installation.html
  */
-
-/**
- * Mock for the global application exit.
- *
- * @param   mixed  $message  Exit code or string. Defaults to zero.
- *
- * @return  void
- */
-function jexit($message = 0)
-{
-}
 
 define('_JEXEC', 1);
 
@@ -40,19 +26,6 @@ ini_set('precision', 14);
  * Ensure that required path constants are defined.  These can be overridden within the phpunit.xml file
  * if you chose to create a custom version of that file.
  */
-if (!defined('JPATH_TESTS'))
-{
-	define('JPATH_TESTS', realpath(__DIR__));
-}
-if (!defined('JPATH_TEST_DATABASE'))
-{
-	define('JPATH_TEST_DATABASE', JPATH_TESTS . '/stubs/database');
-}
-if (!defined('JPATH_TEST_STUBS'))
-{
-	define('JPATH_TEST_STUBS', JPATH_TESTS . '/stubs');
-}
-
 $rootDirectory = getcwd();
 
 if (!defined('JPATH_BASE')) {

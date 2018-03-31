@@ -17,7 +17,6 @@
         "docs": "https://docs.joomla.org"
     },
     "require": {
-        "phpunit/phpunit": "^6",
-        "phpunit/dbunit": "~3.0"
+        "phpunit/phpunit": "^6"
     }
 }
