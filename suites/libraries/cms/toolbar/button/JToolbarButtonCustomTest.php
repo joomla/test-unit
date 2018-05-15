@@ -19,7 +19,7 @@ class JToolbarButtonCustomTest extends \PHPUnit\Framework\TestCase
 	/**
 	 * Toolbar object
 	 *
-	 * @var    JToolbar
+	 * @var    \Joomla\CMS\Toolbar\Toolbar
 	 * @since  3.0
 	 */
 	protected $toolbar;
@@ -27,7 +27,7 @@ class JToolbarButtonCustomTest extends \PHPUnit\Framework\TestCase
 	/**
 	 * Object under test
 	 *
-	 * @var    JToolbarButtonCustom
+	 * @var    \Joomla\CMS\Toolbar\Button\CustomButton
 	 * @since  3.0
 	 */
 	protected $object;
@@ -85,12 +85,16 @@ class JToolbarButtonCustomTest extends \PHPUnit\Framework\TestCase
 	 * @return  void
 	 *
 	 * @since   3.0
+	 * @todo    Maybe move this test into JToolbarButtonTest
 	 */
 	public function testFetchId()
 	{
-		$this->assertThat(
-			$this->object->fetchId('custom', '', 'test'),
-			$this->equalTo('toolbar-test')
+		$method = new \ReflectionMethod('\Joomla\CMS\Toolbar\Button\CustomButton', 'fetchId');
+		$method->setAccessible(true);
+		$this->object->name('test');
+		$this->assertEquals(
+			'toolbar-test',
+			$method->invoke($this->object)
 		);
 	}
 }
