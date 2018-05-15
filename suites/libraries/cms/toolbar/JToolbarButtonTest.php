@@ -77,7 +77,7 @@ class JToolbarButtonTest extends \PHPUnit\Framework\TestCase
 	public function test__construct()
 	{
 		$this->assertThat(
-			new JToolbarButtonStandard($this->toolbar),
+			new JToolbarButtonStandard('buttonName', 'A_LANGUAGE_STRING', ['testOption' => 'test']),
 			$this->isInstanceOf('Joomla\\CMS\\Toolbar\\ToolbarButton')
 		);
 	}
