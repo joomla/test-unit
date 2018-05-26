@@ -22,7 +22,7 @@ class CheckJoomlaUpdatesCommandTest extends \PHPUnit\Framework\TestCase
 	/**
 	 * Object under test
 	 *
-	 * @var    JVersion
+	 * @var    CheckJoomlaUpdatesCommand
 	 * @since  3.0
 	 */
 	protected $object;
@@ -69,7 +69,7 @@ class CheckJoomlaUpdatesCommandTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 * Test if Jinstalled version from Update Information is JVersion
+	 * Test if installed version returned from Update Information is JVersion
 	 *
 	 * @since version 4.0
 	 */
@@ -129,7 +129,7 @@ class CheckJoomlaUpdatesCommandTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 * Tests if the COmmand Class Extends Abstract Command
+	 * Tests if the Command Class Extends Abstract Command
 	 *
 	 * @since version 4.0
 	 */
