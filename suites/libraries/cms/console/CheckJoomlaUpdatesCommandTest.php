@@ -55,31 +55,6 @@ class CheckJoomlaUpdatesCommandTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 * Check if Update Information Contains required information
-	 *
-	 * @since version 4.0
-	 */
-	public function testIfUpdateInformationContainsRequiredParameters()
-	{
-		$updateInfo = $this->object->getUpdateInformation();
-		$this->assertArrayHasKey('installed', $updateInfo, 'The current version is not defined.');
-		$this->assertArrayHasKey('latest', $updateInfo, 'The latest Version must be defined.');
-		$this->assertArrayHasKey('object', $updateInfo, 'Update details information should be set.');
-		$this->assertArrayHasKey('hasUpdate', $updateInfo);
-	}
-
-	/**
-	 * Test if installed version returned from Update Information is JVersion
-	 *
-	 * @since version 4.0
-	 */
-	public function testIfJversionIsInstalledVersion()
-	{
-		$updateInfo = $this->object->getUpdateInformation();
-		$this->assertEquals(\JVERSION, $updateInfo['installed']);
-	}
-
-	/**
 	 * Tests if the name of the command is 'check-updates'
 	 *
 	 * @since version 4.0
@@ -90,32 +65,34 @@ class CheckJoomlaUpdatesCommandTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 * Tests if the command has help information
+	 * Tests SetUpdateInfo method
 	 *
-	 * @since version 4.0
+	 * @since 4.0
+	 *
+	 * @dataProvider dataTestSetUpdateInfo
 	 */
-	public function testIfCommandHasHelp()
+	public function testSetUpdateInfo($info)
 	{
-		$this->assertNotNull($this->object->getProcessedHelp(), 'The command must contain a help');
+		$this->object->setUpdateInfo($info);
+		$this->assertEquals($info, $this->object->getUpdateInfo());
 	}
 
 	/**
-	 * Tests if the Command class implements the initialise method
+	 * Provides data for test SetUpdateInfo method
 	 *
-	 * @since version 4.0
-	 */
-	public function testIfCommandImplementsInitialiseMethod()
-	{
-		$this->assertTrue(method_exists($this->object, 'initialise'), 'The Command Class must Implement the initialise method');
-	}
-
-	/**
-	 * Tests if the Command Class Extends Abstract Command
+	 * @return array
 	 *
-	 * @since version 4.0
+	 * @since 4.0
 	 */
-	public function testIfCommandClassExtendsAbstractCommand()
+	public function dataTestSetUpdateInfo()
 	{
-		$this->assertTrue(is_subclass_of($his->object, 'AbstractCommand'), 'Command Class must implement AbstractCommand');
+		return [
+			[
+					'installed' => \JVERSION,
+					'latest'    => null,
+					'object'    => null,
+					'hasUpdate' => false,
+			]
+		];
 	}
 }
