@@ -75,6 +75,7 @@ class CheckJoomlaUpdatesCommandTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIfJversionIsInstalledVersion()
 	{
+		$updateInfo = $this->object->getUpdateInformation();
 		$this->assertEquals(\JVERSION, $updateInfo['installed']);
 	}
 
@@ -89,33 +90,13 @@ class CheckJoomlaUpdatesCommandTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 *  Tests if the name of the Command is set
-	 *
-	 * @since version 4.0
-	 */
-	public function testIfCommandHasName()
-	{
-		$this->assertNotNull($this->object->getName(), 'The command must contain a name');
-	}
-
-	/**
 	 * Tests if the command has help information
 	 *
 	 * @since version 4.0
 	 */
 	public function testIfCommandHasHelp()
 	{
-		$this->assertNotNull($this->object->getProcessedHelp(), 'The command must contain a name');
-	}
-
-	/**
-	 * Test if execute methood is implemented
-	 *
-	 * @since version 4.0
-	 */
-	public function testIfCommandImplementsExecutemethod()
-	{
-		$this->assertTrue(method_exists($this->object, 'execute'), 'The Command Class must Implement the execute method');
+		$this->assertNotNull($this->object->getProcessedHelp(), 'The command must contain a help');
 	}
 
 	/**
