@@ -72,7 +72,6 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 		$this->object = new UpdateCoreCommand;
 		$a = new TestConsole(new Cli([]));
 		$this->object->setApplication(new TestConsole(new Cli([])));
-		var_dump($this->object->getApplication());
 	}
 
 	/**
