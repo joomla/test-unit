@@ -16,14 +16,8 @@
  */
 
 
-
-namespace Joomla\UnitTest\CMS\Console;
-
 use Joomla\CMS\Application\ConsoleApplication;
-use Joomla\Console\AbstractCommand;
-use Joomla\Console\Application;
 use Joomla\Input\Cli;
-use Joomla\Registry\Registry;
 use Joomla\CMS\Console\UpdateCoreCommand;
 
 
