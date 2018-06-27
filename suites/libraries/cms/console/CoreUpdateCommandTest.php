@@ -24,30 +24,9 @@ use Joomla\Console\AbstractCommand;
 use Joomla\Console\Application;
 use Joomla\Input\Cli;
 use Joomla\Registry\Registry;
-
-/**
- * Class TestConsole
- *
- * This class of course belongs to its own file
- */
-class TestConsole extends Application
-{
-	/**
-	 * @var \Symfony\Component\Console\Output\BufferedOutput
-	 */
-	public $output;
-
-	public function __construct(Cli $input = null, Registry $config = null)
-	{
-		parent::__construct($input, $config);
-
-		$this->output = new \Symfony\Component\Console\Output\BufferedOutput();
-		$this->setConsoleOutput($this->output);
-	}
-}
-
-
 use Joomla\CMS\Console\UpdateCoreCommand;
+
+
 
 class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 {
@@ -70,8 +49,7 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 	protected function setUp()
 	{
 		$this->object = new UpdateCoreCommand;
-		$a = new TestConsole(new Cli([]));
-		$this->object->setApplication(new TestConsole(new Cli([])));
+		$this->object->setApplication(new ConsoleApplication(new Cli([])));
 	}
 
 	/**
@@ -88,18 +66,59 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 		parent::tearDown();
 	}
 
-//	public function testGetUpdateModel()
-//	{
-//		$model = $this->object->getUpdateModel();
-//
-//		$this->assertNotNull($model, 'Update Model cannot be null.');
-//	}
+	/**
+	 * Tests if update model is returned
+	 *
+	 * @since 4.0
+	 * @throws \Exception
+	 */
+	public function testGetUpdateModel()
+	{
+		$model = $this->object->getUpdateModel();
 
+		$this->assertNotNull($model, 'Update Model cannot be null.');
+	}
+
+	/**
+	 * Tests if Downloading of file works
+	 *
+	 * @since 4.0
+	 */
 	public function testDownloadFile()
 	{
 		$url = 'https://github.com/joomla-extensions/patchtester/releases/download/3.0.0-beta3/com_patchtester.zip';
 		$file = $this->object->downloadFile($url);
 		$this->assertFileExists($this->object->getApplication()->get('tmp_path') . '/' . $file, 'File download failed.');
+
+		// Delete test files
+		unlink($this->object->getApplication()->get('tmp_path') . '/' . $file);
+	}
+
+	/**
+	 * Test copying of file
+	 *
+	 * @since 4.0
+	 */
+	public function testCopyFileTo()
+	{
+		$fileDir = JPATH_BASE . '/tmp/testDir/';
+
+		// Create a temporary Directory
+		exec("mkdir $fileDir");
+
+		// Create a file inside the directory
+		$file = $fileDir . 'testFile.txt';
+		file_put_contents($file, 'Test Data');
+
+		// Copy filr to
+		$fileCopy = JPATH_BASE;
+		$this->object->copyFileTo($fileDir, JPATH_BASE);
+
+		$this->assertFileExists( JPATH_BASE . '/testFile.txt', 'File download failed.');
+
+		// Delete Test files and folder
+		unlink(JPATH_BASE . '/testFile.txt');
+		exec("rm -rf $fileDir");
 	}
 
 
