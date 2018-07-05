@@ -58,105 +58,63 @@ class CoreInstallCommandTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 * Tests isAlphanumeric Method
+	 * TEsts the getDummyOptions methos
+	 *
+	 * @return void
 	 *
 	 * @since 4.0
 	 */
-	public function testIsAlphanumeric()
+	public function testGetDummyOption()
 	{
-		$text = "06AbdgeJoomla";
-		self::assertTrue($this->object->isAlphanumeric($text));
+		$options = $this->object->getDummyOptions();
 
-		$text = "Joomla%#5677";
-		self::assertTrue(is_array($this->object->isAlphanumeric($text)));
+		$this->assertNotEmpty($options, 'Default options cannot be empty');
 	}
 
 	/**
-	 * Tests isEmail Method
+	 * Tests the getOptionsTemplate method
+	 *
+	 * @return void
 	 *
 	 * @since 4.0
 	 */
-	public function testIsEmail()
+	public function testGetOptionsTemplate()
 	{
-		$text = "example@joomla.com";
-		self::assertTrue($this->object->isEmail($text));
-
-		$text = "example@j";
-		self::assertTrue(is_array($this->object->isEmail($text)));
-	}
-
-	/**
-	 * Tests minLength Method
-	 *
-	 * @since 4.0
-	 */
-	public function testMinLength()
-	{
-		$text = "Hello World!";
-		self::assertTrue($this->object->minLength($text, 8));
-
-		$text = "Hello World!";
-		self::assertTrue(is_array($this->object->minLength($text, 13)));
-	}
-
-	/**
-	 * Tests maxLength method
-	 *
-	 * @since 4.0
-	 */
-	public function testMaxLength()
-	{
-		$text = "Hello World!";
-		self::assertTrue($this->object->maxLength($text, 13));
-
-		$text = "Hello World!";
-		self::assertTrue(is_array($this->object->maxLength($text, 8)));
-	}
-
-
-	/**
-	 * Tests isInteger Method
-	 *
-	 * @since 4.0
-	 */
-	public function testIsInteger()
-	{
-		$integer = 2018;
-		self::assertTrue($this->object->isInteger($integer));
-
-		$integer = "Twenty eighteen";
-		self::assertTrue(is_array($this->object->isInteger($integer)));
-	}
-
-	/**
-	 * Tests validateInput method
-	 *
-	 * @since 4.0
-	 *
-	 * @dataProvider dataInputRules
-	 */
-	public function testValidateInput($input, $rule, $expected)
-	{
-		$outcome = $this->object->validateInput($input, $rule);
-		self::assertEquals($expected, $outcome, 'Validation Fails');
-	}
-
-	/**
-	 * Provides data for test testValidateInput method
-	 *
-	 * @return array
-	 *
-	 * @since 4.0
-	 */
-	public function dataInputRules()
-	{
-		return [
-			[
-				2018, 'isInteger|minLength:4|maxLength:6', true,
-			],
-			[
-				206, 'isInteger|minLength:4|maxLength:6', ['message' => "The input cannot be lesser than 4 characters."],
-			]
+		$expectedKeys = [
+			'language',
+			'site_name',
+			'admin_email',
+			'admin_user',
+			'admin_password',
+			'db_type',
+			'db_host',
+			'db_user',
+			'db_pass',
+			'db_name',
+			'db_prefix',
+			'db_old',
+			'helpurl',
 		];
+		$actualKeys = array_keys($this->object->getOptionsTemplate());
+
+		$this->assertEquals($expectedKeys, $actualKeys);
+	}
+
+	/**
+	 *
+	 * Tests the validate method
+	 *
+	 * @return void
+	 *
+	 * @since 4.0
+	 */
+	public function testValidate()
+	{
+		$options = $this->object->getDummyOptions();
+		$options['admin_email'] = '';
+		$this->assertFalse($this->object->validate($options));
+
+		$options = $this->object->getDummyOptions();
+		$this->assertEquals($options, $this->object->validate($options));
 	}
 }
