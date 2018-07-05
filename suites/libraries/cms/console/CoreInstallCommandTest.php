@@ -99,22 +99,4 @@ class CoreInstallCommandTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals($expectedKeys, $actualKeys);
 	}
-
-	/**
-	 *
-	 * Tests the validate method
-	 *
-	 * @return void
-	 *
-	 * @since 4.0
-	 */
-	public function testValidate()
-	{
-		$options = $this->object->getDummyOptions();
-		$options['admin_email'] = '';
-		$this->assertFalse($this->object->validate($options));
-
-		$options = $this->object->getDummyOptions();
-		$this->assertEquals($options, $this->object->validate($options));
-	}
 }
