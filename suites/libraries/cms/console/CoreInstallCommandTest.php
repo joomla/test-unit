@@ -12,7 +12,7 @@
  *
  * @package     Joomla.UnitTest
  * @subpackage  Version
- * @since       3.0
+ * @since       4.0
  */
 
 
@@ -26,7 +26,7 @@ class CoreInstallCommandTest extends \PHPUnit\Framework\TestCase
 	 * Object under test
 	 *
 	 * @var    CoreInstallCommandmmand
-	 * @since  3.0
+	 * @since  4.0
 	 */
 	protected $object;
 
@@ -36,7 +36,7 @@ class CoreInstallCommandTest extends \PHPUnit\Framework\TestCase
 	 *
 	 * @return  void
 	 *
-	 * @since   3.0
+	 * @since   4.0
 	 */
 	protected function setUp()
 	{
@@ -50,7 +50,7 @@ class CoreInstallCommandTest extends \PHPUnit\Framework\TestCase
 	 * @return  void
 	 *
 	 * @see     \PHPUnit\Framework\TestCase::tearDown()
-	 * @since   3.6
+	 * @since   4.0
 	 */
 	protected function tearDown()
 	{
