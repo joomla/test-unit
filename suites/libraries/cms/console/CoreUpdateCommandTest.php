@@ -18,6 +18,7 @@
 
 use Joomla\CMS\Application\ConsoleApplication;
 use Joomla\Input\Cli;
+use Joomla\CMS\Factory;
 use Joomla\CMS\Console\UpdateCoreCommand;
 
 
@@ -42,8 +43,15 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function setUp()
 	{
+		// This is all I had to do to fix the error and all test case ran fine
+		// Is this really worth it?
+		$dispatcher = new \Joomla\Event\Dispatcher;
+		$conf = Factory::getConfig();
+		$app = new ConsoleApplication(new Cli([]), $conf, $dispatcher);
+		Factory::$application = $app;
+
 		$this->object = new UpdateCoreCommand;
-		$this->object->setApplication(new ConsoleApplication(new Cli([])));
+		$this->object->setApplication($app);
 	}
 
 	/**
@@ -85,7 +93,7 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 		$this->assertFileExists($this->object->getApplication()->get('tmp_path') . '/' . $file, 'File download failed.');
 
 		// Delete test files
-		unlink($this->object->getApplication()->get('tmp_path') . '/' . $file);
+		\Joomla\Filesystem\File::delete($this->object->getApplication()->get('tmp_path') . '/' . $file);
 	}
 
 	/**
