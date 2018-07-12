@@ -28,7 +28,7 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 	 * Object under test
 	 *
 	 * @var    UpdateCoreCommand
-	 * @since  3.0
+	 * @since  4.0
 	 */
 	protected $object;
 
@@ -38,7 +38,7 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 	 *
 	 * @return  void
 	 *
-	 * @since   3.0
+	 * @since   4.0
 	 */
 	protected function setUp()
 	{
@@ -52,7 +52,7 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 	 * @return  void
 	 *
 	 * @see     \PHPUnit\Framework\TestCase::tearDown()
-	 * @since   3.6
+	 * @since   4.0
 	 */
 	protected function tearDown()
 	{
