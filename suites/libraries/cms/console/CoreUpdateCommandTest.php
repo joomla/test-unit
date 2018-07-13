@@ -69,19 +69,6 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 * Tests if update model is returned
-	 *
-	 * @since 4.0
-	 * @throws \Exception
-	 */
-	public function testGetUpdateModel()
-	{
-		$model = $this->object->getUpdateModel();
-
-		$this->assertNotNull($model, 'Update Model cannot be null.');
-	}
-
-	/**
 	 * Tests if Downloading of file works
 	 *
 	 * @since 4.0
@@ -121,6 +108,33 @@ class CoreUpdateCommandTest extends \PHPUnit\Framework\TestCase
 		// Delete Test files and folder
 		unlink(JPATH_BASE . '/testFile.txt');
 		exec("rm -rf $fileDir");
+	}
+
+	/**
+	 * Tests runCheck Method
+	 *
+	 * @since 4.0
+	 *
+	 * @throws Exception
+	 */
+	public function testRunChecks()
+	{
+		$updated = JVERSION === $this->object->getUpdateModel()->getUpdateInformation()['latest'];
+
+		$this->assertEquals($updated, $this->object->runChecks(), 'runChecks Method failed');
+	}
+
+	/**
+	 * Tests if update model is returned
+	 *
+	 * @since 4.0
+	 * @throws \Exception
+	 */
+	public function testGetUpdateModel()
+	{
+		$model = $this->object->getUpdateModel();
+
+		$this->assertNotNull($model, 'Update Model cannot be null.');
 	}
 
 
