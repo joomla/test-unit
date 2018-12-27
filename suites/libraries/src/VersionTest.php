@@ -7,6 +7,10 @@
  * @license	    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+namespace Tests\Joomla\CMS;
+
+use Joomla\CMS\Version;
+
 /**
  * Test class for JVersion.
  *
@@ -14,7 +18,7 @@
  * @subpackage  Version
  * @since       3.0
  */
-class JVersionTest extends \PHPUnit\Framework\TestCase
+class VersionTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * Object under test
@@ -34,7 +38,7 @@ class JVersionTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function setUp()
 	{
-		$this->object = new JVersion;
+		$this->object = new Version;
 	}
 
 	/**
