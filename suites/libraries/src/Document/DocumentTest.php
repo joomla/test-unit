@@ -3,14 +3,18 @@
  * @package     Joomla.UnitTest
  * @subpackage  Document
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
+
+namespace Tests\Joomla\CMS\Document;
+
+use \Joomla\CMS\Document\Document;
 
 /**
  * Test class for JDocument.
  */
-class JDocumentTest extends \PHPUnit\Framework\TestCase
+class DocumentTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * @var  JDocument
@@ -25,7 +29,7 @@ class JDocumentTest extends \PHPUnit\Framework\TestCase
 	{
 		parent::setUp();
 
-		$this->object = new JDocument;
+		$this->object = new Document;
 	}
 
 	/**
@@ -34,7 +38,7 @@ class JDocumentTest extends \PHPUnit\Framework\TestCase
 	 */
 	protected function tearDown()
 	{
-		JDocument::$_buffer = null;
+		Document::$_buffer = null;
 		unset($this->object);
 		parent::tearDown();
 	}
@@ -97,7 +101,7 @@ class JDocumentTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testInjectingOptionsIntoTheObjectConstructor($options, $expects)
 	{
-		$object = new JDocument($options);
+		$object = new Document($options);
 
 		$this->assertAttributeSame($expects['lineend'], '_lineEnd', $object);
 		$this->assertAttributeSame($expects['charset'], '_charset', $object);
@@ -113,7 +117,7 @@ class JDocumentTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRetrievingAnInstanceOfTheHtmlDocument()
 	{
-		$this->assertInstanceOf('JDocumentHtml', JDocument::getInstance());
+		$this->assertInstanceOf('JDocumentHtml', Document::getInstance());
 	}
 
 	/**
@@ -121,7 +125,7 @@ class JDocumentTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRetrievingANonExistantTypeFetchesARawDocument()
 	{
-		$doc = JDocument::getInstance('custom');
+		$doc = Document::getInstance('custom');
 		$this->assertInstanceOf('JDocumentRaw', $doc);
 		$this->assertAttributeSame('custom', '_type', $doc);
 	}
@@ -247,29 +251,6 @@ class JDocumentTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 * @testdox  Test that addScriptVersion with default params returns an instance of $this
-	 */
-	public function testEnsureAddScriptVersionWithDefaultParamsReturnsThisObject()
-	{
-		$this->assertSame($this->object, $this->object->addScriptVersion('https://www.joomla.org/media/system/js/core.js'));
-	}
-
-	/**
-	 * @testdox  Test that addScriptVersion with default params and $this->mediaVersion set returns an instance of $this
-	 *
-	 * @covers   JDocument::addScriptVersion
-	 * @uses     JDocument::addScript
-	 * @uses     JDocument::getMediaVersion
-	 * @uses     JDocument::setMediaVersion
-	 */
-	public function testEnsureAddScriptVersionWithDefaultParamsAndMediaVersionSetReturnsThisObject()
-	{
-		$this->object->setMediaVersion('1a2b3c4d');
-
-		$this->assertSame($this->object, $this->object->addScriptVersion('https://www.joomla.org/media/system/js/core.js'));
-	}
-
-	/**
 	 * @testdox  Test that addScriptDeclaration returns an instance of $this
 	 */
 	public function testEnsureAddScriptDeclarationReturnsThisObject()
@@ -292,29 +273,6 @@ class JDocumentTest extends \PHPUnit\Framework\TestCase
 	public function testEnsureAddStylesheetReturnsThisObject()
 	{
 		$this->assertSame($this->object, $this->object->addStyleSheet('https://www.joomla.org/media/system/css/system.css'));
-	}
-
-	/**
-	 * @testdox  Test that addStyleSheetVersion with default params returns an instance of $this
-	 */
-	public function testEnsureAddStylesheetVersionWithDefaultParamsReturnsThisObject()
-	{
-		$this->assertSame($this->object, $this->object->addStyleSheetVersion('https://www.joomla.org/media/system/css/system.css'));
-	}
-
-	/**
-	 * @testdox  Test that addStyleSheetVersion with default params and $this->mediaVersion set returns an instance of $this
-	 *
-	 * @covers   JDocument::addStyleSheetVersion
-	 * @uses     JDocument::addStylesheet
-	 * @uses     JDocument::getMediaVersion
-	 * @uses     JDocument::setMediaVersion
-	 */
-	public function testEnsureAddStylesheetVersionWithDefaultParamsAndMediaVersionSetReturnsThisObject()
-	{
-		$this->object->setMediaVersion('1a2b3c4d');
-
-		$this->assertSame($this->object, $this->object->addStyleSheetVersion('https://www.joomla.org/media/system/css/system.css'));
 	}
 
 	/**

@@ -3,14 +3,21 @@
  * @package     Joomla.UnitTest
  * @subpackage  Document
  *
- * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
+
+namespace Tests\Joomla\CMS\Document;
+
+use \Joomla\CMS\Document\Document;
+use \Joomla\CMS\Document\DocumentRenderer;
+
+require_once __DIR__ . '/stubs/DocumentRendererInspector.php';
 
 /**
  * Test class for JDocumentRenderer.
  */
-class JDocumentRendererTest extends \PHPUnit\Framework\TestCase
+class DocumentRendererTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * @var  JDocumentRenderer
@@ -34,8 +41,8 @@ class JDocumentRendererTest extends \PHPUnit\Framework\TestCase
 	{
 		parent::setUp();
 
-		$doc = new JDocument;
-		$this->object = new JDocumentRenderer($doc);
+		$doc = new Document;
+		$this->object = new DocumentRendererInspector($doc);
 
 		$this->backupServer = $_SERVER;
 

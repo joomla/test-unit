@@ -7,6 +7,11 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+namespace Tests\Joomla\CMS\Pagination;
+
+use Joomla\CMS\Pagination\PaginationObject;
+use Joomla\CMS\Language\Text;
+
 /**
  * Test class for JPaginationObject.
  *
@@ -14,7 +19,7 @@
  * @subpackage  Pagination
  * @since       3.2
  */
-class JPaginationObjectTest extends \PHPUnit\Framework\TestCase
+class PaginationObjectTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * Provides the data to test the constructor method.
@@ -26,7 +31,7 @@ class JPaginationObjectTest extends \PHPUnit\Framework\TestCase
 	public function dataTestConstructor()
 	{
 		return array(
-			array(JText::_('JPREV'), '', null, null, false,
+			array(Text::_('JPREV'), '', null, null, false,
 				array(
 					'text' => 'Prev',
 					'prefix' => '',
@@ -35,7 +40,7 @@ class JPaginationObjectTest extends \PHPUnit\Framework\TestCase
 					'active' => false,
 				)
 			),
-			array(JText::_('JLIB_HTML_START'), 4, 2, 'http://www.example.com', true,
+			array(Text::_('JLIB_HTML_START'), 4, 2, 'http://www.example.com', true,
 				array(
 					'text' => 'JLIB_HTML_START',
 					'prefix' => 4,
@@ -68,7 +73,7 @@ class JPaginationObjectTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testConstructor($text, $prefix = '', $base = null, $link = null, $active = false, $expected)
 	{
-		$pagination = new JPaginationObject($text, $prefix, $base, $link, $active);
+		$pagination = new PaginationObject($text, $prefix, $base, $link, $active);
 
 		$this->assertEquals($expected['text'], $pagination->text, 'Wrong Text');
 

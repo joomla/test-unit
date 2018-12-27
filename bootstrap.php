@@ -26,6 +26,16 @@ ini_set('precision', 14);
  * Ensure that required path constants are defined.  These can be overridden within the phpunit.xml file
  * if you chose to create a custom version of that file.
  */
+if (!defined('JPATH_TESTS')) {
+    define('JPATH_TESTS', realpath(__DIR__));
+}
+if (!defined('JPATH_TEST_DATABASE')) {
+    define('JPATH_TEST_DATABASE', JPATH_TESTS . '/stubs/database');
+}
+if (!defined('JPATH_TEST_STUBS')) {
+    define('JPATH_TEST_STUBS', JPATH_TESTS . '/stubs');
+}
+
 $rootDirectory = getcwd();
 
 if (!defined('JPATH_BASE')) {
@@ -110,3 +120,5 @@ require_once JPATH_LIBRARIES . '/classmap.php';
 
 // Define the Joomla version if not already defined.
 defined('JVERSION') or define('JVERSION', (new JVersion)->getShortVersion());
+
+JLoader::registerPrefix('Test', __DIR__ . '/core');
